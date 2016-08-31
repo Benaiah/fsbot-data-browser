@@ -1,7 +1,5 @@
 ;;; -*- lexical-binding: t -*-
 
-(defvar fsbot-data '())
-
 (defun fsbot-download-data ()
   (interactive)
   (url-retrieve
