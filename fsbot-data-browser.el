@@ -8,6 +8,10 @@
      (write-region nil nil "~/.emacs.d/.fsbot-data-raw" nil)
      (message "fsbot data finished downloading"))))
 
+(defun fsbot-slurp-file-into-buffer (filename)
+  (insert-file-contents filename)
+  (buffer-substring-no-properties (point-min) (point-max)))
+
 (defun fsbot-parse-data ()
   (goto-char 0)
   (let ((ret '()))
@@ -28,8 +32,9 @@
     "nil"))
 
 (defun fsbot-load-data ()
-  (let ((fsbot-parsed-data (with-current-buffer (find-file-noselect "~/.emacs.d/.fsbot-data-raw")
-                             (fsbot-parse-data))))
+  (let ((fsbot-parsed-data
+         (with-temp-buffer (fsbot-slurp-file-into-buffer "~/.emacs.d/.fsbot-data-raw")
+                           (fsbot-parse-data))))
     (-map (lambda (entry)
             (let ((key (aref (car entry) 0))
                   (notes (fsbot-process-notes
