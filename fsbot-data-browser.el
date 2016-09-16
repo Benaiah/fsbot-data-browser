@@ -87,7 +87,6 @@
               `(,key [,key ,notes])))
           fsbot-parsed-data)))
 
-;;;###autoload
 (define-derived-mode fsbot-data-browser-mode tabulated-list-mode
   "Fsbot Data Browser" "Tabulated-list-mode browser for fsbot data."
   (setq tabulated-list-format [("Key" 30 t)
@@ -96,7 +95,6 @@
   (setq tabulated-list-sort-key (cons "Key" nil))
   (tabulated-list-init-header))
 
-;;;###autoload
 (defun fsbot-list-data (data)
   (pop-to-buffer "*fsbot data*" nil)
   (fsbot-data-browser-mode)
@@ -104,6 +102,7 @@
   (setq tabulated-list-entries data)
   (tabulated-list-print t))
 
+;;;###autoload
 (defun fsbot-view-data ()
   "View fsbot db. You must call `fsbot-download-data' before this will work."
   (interactive)
