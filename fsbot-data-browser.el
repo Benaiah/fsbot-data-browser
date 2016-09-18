@@ -104,11 +104,6 @@
 (defun fsbot-get-text-of-entry (entry)
   (elt entry 1))
 
-(defun fsbot-search-data ()
-  (interactive)
-  (let* ((selected-entry-title ))
-    (fsbot-display-entry selected-entry-title)))
-
 (defun fsbot-display-entry (title)
   (interactive (list (completing-read "Fsbot entry: " fsbot-data)))
   (pop-to-buffer "*fsbot entry*")
