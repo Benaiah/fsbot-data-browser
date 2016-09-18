@@ -41,6 +41,9 @@
 ;;
 ;;; Code:
 
+(require 'cl-lib)
+(require 'subr-x)
+
 (defvar fsbot-data)
 
 ;;;###autoload
@@ -89,6 +92,38 @@
                    fsbot-parsed-data)))
       (setq fsbot-data loaded-fsbot-data)
       loaded-fsbot-data)))
+
+(defun fsbot-get-entry (entry-title)
+  (car (cdr (cl-find-if
+             (lambda (entry) (string-equal (car entry) entry-title))
+             fsbot-data))))
+
+(defun fsbot-get-title-of-entry (entry)
+  (elt entry 0))
+
+(defun fsbot-get-text-of-entry (entry)
+  (elt entry 1))
+
+(defun fsbot-search-data ()
+  (interactive)
+  (let* ((selected-entry-title ))
+    (fsbot-display-entry selected-entry-title)))
+
+(defun fsbot-display-entry (title)
+  (interactive (list (completing-read "Fsbot entry: " fsbot-data)))
+  (pop-to-buffer "*fsbot entry*")
+  (erase-buffer)
+  (let ((text (fsbot-get-text-of-entry (fsbot-get-entry title))))
+    (insert (format "%s is \n%s" title
+                    (let ((text-as-list (car (read-from-string (string-trim text))))
+                          (current-entry -1))
+                      (if (and (listp text-as-list)
+                               (< 0 (length text-as-list)))
+                          (string-join (mapcar (lambda (el)
+                                                 (cl-incf current-entry)
+                                                 (format "[%s]: %s\n" current-entry el))
+                                               text-as-list))
+                        text))))))
 
 (define-derived-mode fsbot-data-browser-mode tabulated-list-mode
   "Fsbot Data Browser" "Tabulated-list-mode browser for fsbot data."
