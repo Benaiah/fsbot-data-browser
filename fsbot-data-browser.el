@@ -41,6 +41,8 @@
 ;;
 ;;; Code:
 
+(defvar fsbot-data)
+
 ;;;###autoload
 (defun fsbot-download-data ()
   "Download fsbot db for viewing. You must do this before you can use `fsbot-view-data'."
@@ -78,12 +80,15 @@
   (let ((fsbot-parsed-data
          (with-temp-buffer (fsbot-slurp-file-into-buffer "~/.emacs.d/.fsbot-data-raw")
                            (fsbot-parse-data))))
-    (mapcar (lambda (entry)
-              (let ((key (aref (car entry) 0))
-                    (notes (fsbot-process-notes
-                            (cdr (car (cdr (aref (car entry) 7)))))))
-                `(,key [,key ,notes])))
-            fsbot-parsed-data)))
+    (let ((loaded-fsbot-data
+           (mapcar (lambda (entry)
+                     (let ((key (aref (car entry) 0))
+                           (notes (fsbot-process-notes
+                                   (cdr (car (cdr (aref (car entry) 7)))))))
+                       `(,key [,key ,notes])))
+                   fsbot-parsed-data)))
+      (setq fsbot-data loaded-fsbot-data)
+      loaded-fsbot-data)))
 
 (define-derived-mode fsbot-data-browser-mode tabulated-list-mode
   "Fsbot Data Browser" "Tabulated-list-mode browser for fsbot data."
