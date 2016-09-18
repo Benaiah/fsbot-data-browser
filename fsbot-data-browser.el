@@ -94,7 +94,7 @@
   (tabulated-list-init-header))
 
 (defun fsbot-list-data (data)
-  (pop-to-buffer "*fsbot data*" nil)
+  (pop-to-buffer "*fsbot data*")
   (fsbot-data-browser-mode)
   (setq truncate-lines t)
   (setq tabulated-list-entries data)
