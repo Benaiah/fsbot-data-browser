@@ -135,6 +135,12 @@
   (setq tabulated-list-entries data)
   (tabulated-list-print t))
 
+(defun fsbot-display-entry-at-point ()
+  (interactive)
+  (fsbot-display-entry (tabulated-list-get-id)))
+
+(define-key fsbot-data-browser-mode-map (kbd "RET") 'fsbot-display-entry-at-point)
+
 ;;;###autoload
 (defun fsbot-view-data ()
   "View fsbot db. You must call `fsbot-download-data' before this will work."
