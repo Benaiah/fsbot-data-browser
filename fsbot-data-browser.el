@@ -80,18 +80,18 @@
     "nil"))
 
 (defun fsbot-load-data ()
-  (let ((fsbot-parsed-data
-         (with-temp-buffer (fsbot-slurp-file-into-buffer "~/.emacs.d/.fsbot-data-raw")
-                           (fsbot-parse-data))))
-    (let ((loaded-fsbot-data
-           (mapcar (lambda (entry)
-                     (let ((key (aref (car entry) 0))
-                           (notes (fsbot-process-notes
-                                   (cdr (car (cdr (aref (car entry) 7)))))))
-                       `(,key [,key ,notes])))
-                   fsbot-parsed-data)))
-      (setq fsbot-data (cl-copy-tree loaded-fsbot-data))
-      loaded-fsbot-data)))
+  (let* ((fsbot-parsed-data
+          (with-temp-buffer (fsbot-slurp-file-into-buffer "~/.emacs.d/.fsbot-data-raw")
+                            (fsbot-parse-data)))
+         (loaded-fsbot-data
+          (mapcar (lambda (entry)
+                    (let ((key (aref (car entry) 0))
+                          (notes (fsbot-process-notes
+                                  (cdr (car (cdr (aref (car entry) 7)))))))
+                      `(,key [,key ,notes])))
+                  fsbot-parsed-data)))
+    (setq fsbot-data (cl-copy-tree loaded-fsbot-data))
+    loaded-fsbot-data))
 
 (defun fsbot-get-entry (entry-title)
   (car (cdr (cl-find-if
