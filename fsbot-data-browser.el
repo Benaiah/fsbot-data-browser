@@ -90,7 +90,7 @@
                                    (cdr (car (cdr (aref (car entry) 7)))))))
                        `(,key [,key ,notes])))
                    fsbot-parsed-data)))
-      (setq fsbot-data loaded-fsbot-data)
+      (setq fsbot-data (cl-copy-tree loaded-fsbot-data))
       loaded-fsbot-data)))
 
 (defun fsbot-get-entry (entry-title)
