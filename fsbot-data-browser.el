@@ -5,11 +5,11 @@
 ;; Author: Benaiah Mischenko
 ;; Maintainer: Benaiah Mischenko
 ;; Created: Thu September 15 2016
-;; Version: 0.2
+;; Version: 0.3
 ;; Package-Requires: ()
 ;; Last-Updated: Thu September 15 2016
 ;;           By: Benaiah Mischenko
-;;     Update #: 2
+;;     Update #: 3
 ;; URL: http://github.com/benaiah/fsbot-data-browser
 ;; Doc URL: http://github.com/benaiah/fsbot-data-browser
 ;; Keywords: fsbot, irc, tabulated-list-mode
