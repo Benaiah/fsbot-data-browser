@@ -122,8 +122,15 @@
 
 (define-derived-mode fsbot-data-browser-mode tabulated-list-mode
   "Fsbot Data Browser" "Tabulated-list-mode browser for fsbot data."
-  (setq tabulated-list-format [("Key" 30 t)
-                               ("Notes" 0 t)])
+  (setq tabulated-list-format
+        [("Key" 30
+          ;; sorting function, for some reason tabulated-list-mode
+          ;; defaults to a case-sensitive sort, which we don't want
+          (lambda (entry-a entry-b)
+            (let ((key-a (downcase (car entry-a)))
+                  (key-b (downcase (car entry-b))))
+              (string-lessp key-a key-b))))
+         ("Notes" 0 nil)])
   (setq tabulated-list-padding 2)
   (setq tabulated-list-sort-key (cons "Key" nil))
   (tabulated-list-init-header))
