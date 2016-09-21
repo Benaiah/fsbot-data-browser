@@ -57,6 +57,8 @@
      (message "fsbot data finished downloading")
      (fsbot-load-data))))
 
+(defalias 'fsbot-refresh-data 'fsbot-download-data)
+
 (defun fsbot-slurp-file-into-buffer (filename)
   (insert-file-contents filename)
   (buffer-substring-no-properties (point-min) (point-max)))
