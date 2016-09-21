@@ -1,0 +1,18 @@
+* fsbot-view-data
+This package provides an interface to the database of fsbot, the
+resident bot of the #emacs channel on freenode. Use
+~fsbot-download-data~ first, then call ~fsbot-view-data~ to browse the
+entire fsbot db, as well as ~fsbot-display-entry~ to search for a
+particular entry. While in the browser, you can use
+~fsbot-display-entry-at-point~ (bound to RET by default) to display
+the entry at point in its own buffer.
+
+fsbot-data-browser is on MELPA and MELPA Stable, under that name. I
+recommend the MELPA Stable version, as the master branch is not
+necessarily going to work well at all times. (That's what releases are
+for).
+
+* Todos
+- don't hardcode the local db filename
+- fsbot-view-data should kick off a download if the local copy doesn't exist
+- should add option to automatically update the fsbot data if it's a certain age

@@ -5,15 +5,15 @@
 ;; Author: Benaiah Mischenko
 ;; Maintainer: Benaiah Mischenko
 ;; Created: Thu September 15 2016
-;; Version: 0.1
+;; Version: 0.2
 ;; Package-Requires: ()
 ;; Last-Updated: Thu September 15 2016
 ;;           By: Benaiah Mischenko
-;;     Update #: 1
+;;     Update #: 2
 ;; URL: http://github.com/benaiah/fsbot-data-browser
 ;; Doc URL: http://github.com/benaiah/fsbot-data-browser
 ;; Keywords: fsbot, irc, tabulated-list-mode
-;; Compatibility: GNU Emacs: 24.x, 25.x
+;; Compatibility: GNU Emacs: 24.4 and up, 25.x
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
