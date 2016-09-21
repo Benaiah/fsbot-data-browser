@@ -91,7 +91,7 @@
                                   (cdr (car (cdr (aref (car entry) 7)))))))
                       `(,key [,key ,notes])))
                   fsbot-parsed-data)))
-    (setq fsbot-data (cl-copy-tree loaded-fsbot-data))
+    (setq fsbot-data loaded-fsbot-data)
     loaded-fsbot-data))
 
 (defun fsbot-get-entry (entry-title)
@@ -153,7 +153,8 @@
 (defun fsbot-view-data ()
   "View fsbot db. You must call `fsbot-download-data' before this will work."
   (interactive)
-  (fsbot-list-data (fsbot-load-data)))
+  (let ((fsbot-viewable-data (if fsbot-data (copy-tree fsbot-data) (fsbot-load-data))))
+    (fsbot-list-data fsbot-viewable-data)))
 
 (provide 'fsbot-data-browser)
 
