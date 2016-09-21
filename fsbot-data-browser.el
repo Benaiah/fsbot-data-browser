@@ -54,7 +54,8 @@
    "http://gnufans.net/~fsbot/data/botbbdb"
    (lambda (&rest _)
      (write-region nil nil "~/.emacs.d/.fsbot-data-raw" nil)
-     (message "fsbot data finished downloading"))))
+     (message "fsbot data finished downloading")
+     (fsbot-load-data))))
 
 (defun fsbot-slurp-file-into-buffer (filename)
   (insert-file-contents filename)
