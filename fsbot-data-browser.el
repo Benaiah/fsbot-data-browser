@@ -90,7 +90,7 @@
           (mapcar (lambda (entry)
                     (let ((key (aref (car entry) 0))
                           (notes (fsbot-process-notes
-                                  (cdr (car (cdr (aref (car entry) 7)))))))
+                                  (cdr (car (aref (car entry) 8))))))
                       `(,key [,key ,notes])))
                   fsbot-parsed-data)))
     (setq fsbot-data loaded-fsbot-data)
